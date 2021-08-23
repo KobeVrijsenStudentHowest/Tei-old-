@@ -242,6 +242,13 @@ Tei has a `using namespace std::literals;` directive, standard string literals c
 
 Feel free to use `using namespace tei;` or similar items to ease up typing. It should not break anything, names are generally unique.
 
+# Galaga
+
+This is an example game to showcase the engine.
+
+<img src="https://files.catbox.moe/pyzefr.JPG" alt="Menu" height="256px">
+<img src="https://files.catbox.moe/4w9msf.JPG" alt="Level" height="256px">
+
 # Tei 
 
 <img src="https://en.touhouwiki.net/images/f/f5/InabaoftheMoonandInabaoftheEarthTewi.png" alt="てゐ" height="96px">
