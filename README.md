@@ -153,6 +153,15 @@ auto& myTimer = object.AddComponent<MyTimer>();
 ```
 The component is constructed, attached and ready for use. Don't forget to enable the parent object.
 
+To get, test and use a component from a game object, We can simply call it in an `if` statement:
+```c++
+if (auto& myTimer{ object.GetComponent<MyTimer>() })
+{
+  myTimer.DoThing();
+}
+else throw std::runtime_error{ "No such component!" };
+```
+
 ### Update sequence
 
 Which object will be updated before which is currently unspecified. The pattern may be consistent but one should not rely on this being the case.
