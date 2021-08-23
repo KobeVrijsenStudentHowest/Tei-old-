@@ -4,9 +4,9 @@
 
 This engine is mostly based around SDL 2. Countless C++20 features have also been used.
 
-## Control flow
+## Client
 
-### Client start and finish
+### Start and finish
 
 `main` should not be defined by the client.
 
