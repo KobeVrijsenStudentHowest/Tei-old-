@@ -172,6 +172,67 @@ When an object is cleared, it will dispose of its children and components in res
 
 A premade text component is proveded under `tei::prefab::TextComponent`.
 
+### Events and observers
+
+To listen for events, the `tei::Observer` component can be used. Add it to your game object and then proceed to add event listeners.
+
+There are two types that can be used: `tei::KeyboardInput` and `tei::Trigger`. Each handling keyboard and arbitrary events respectively.
+
+To use the `KeyboardInput`, follow this example
+```c++
+observer.AddListener(tei::KeyboardInput{ 
+  tei::KEYCODE::RETURN,
+  [] (bool state)
+  {
+    puts(state ? "Key pressed down!" : "Key released!");
+  }
+});
+```
+
+`Trigger` can be used to listen to custom events
+
+A custom event can be defined like so:
+```c++
+class MyDeathEvent : public tei::Event
+{
+public:
+
+  MyDeathEvent(char* name)
+    // Event has to be initialised with `this`
+    : Event{ this }
+    , m_Name{ name }
+  {}
+  
+  // Data can be passed along with the event
+  char* Killer()
+  { return m_Name; }
+  
+private:
+  char* m_Name;
+}
+```
+
+Listening to custom events:
+```c++
+observer.AddListener(tei::Trigger<MyDeathEvent>{
+  [] (MyDeathEvent const& e)
+  {
+    puts("Oh no, the player died!");
+    puts(e.Killer());
+  }
+});
+```
+
+### Internals
+
+It is not recommended to ever use `tei::internal`. It contains the majority of the internal logic.
+
+### using namespace
+
+Tei has a `using namespace std::literals;` directive, standard string literals can thus be used anywhere.
+
+Feel free to use `using namespace tei;` or similar items to ease up typing. It should not break anything, names are generally unique.
+
 # Tei 
 
 <img src="https://en.touhouwiki.net/images/f/f5/InabaoftheMoonandInabaoftheEarthTewi.png" alt="てゐ" height="96px">
